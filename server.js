@@ -46,16 +46,15 @@ app.get('/api/getPaintingsByFamily/:family', (req, res) => {
       }));
     });
   
-app.get('/api/getfamilies', (req, res) => {
+app.get('/api/getFamilies', (req, res) => {
     res.json(allFamilies);
     });
 
 // Set static folder
-console.log(__dirname);
+//console.log(__dirname);
 //app.use(express.static(path.join(__dirname, '/images')));
 app.use(express.static(path.join(__dirname, 'images')));
-// Members API Routes
-// app.use('/api/members', require('./routes/api/members'));
+
 
 const PORT = process.env.PORT || 5000;
 

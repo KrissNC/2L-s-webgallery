@@ -13,13 +13,16 @@ class Galeries extends Component {
     componentDidMount() {
         fetch('/api/getFamilies')
         .then(res => res.json())
-        .then( families => this.setState({families}, () => console.log('families fetched', families) ) )
+        .then( families => this.setState({families}) );
+//        .then( families => this.setState({families}, ()=>console.log('fetched families..', families); ))
     }
+//                {this.state.families.map(family => {<li>afficher la famille {family.label}</li>})}
+
     render() {
         return (
-            <div>
-                galleries new
-            </div>
+            <ul>
+            {this.state.families.map(family => <li>afficher la famille {family.label}</li>)}
+            </ul>
         )
     }
 }
