@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './galeries.css'
 
+import FamilyGallery from './family'
+
+
 class Galeries extends Component {
 
     constructor() {
@@ -16,13 +19,10 @@ class Galeries extends Component {
         .then( families => this.setState({families}) );
 //        .then( families => this.setState({families}, ()=>console.log('fetched families..', families); ))
     }
-//                {this.state.families.map(family => {<li>afficher la famille {family.label}</li>})}
 
     render() {
         return (
-            <ul>
-            {this.state.families.map(family => <li>afficher la famille {family.label}</li>)}
-            </ul>
+            this.state.families.map(family => <FamilyGallery key={family.family} family={family.family} label={family.label}></FamilyGallery>)
         )
     }
 }

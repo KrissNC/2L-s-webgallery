@@ -53,7 +53,7 @@ app.get('/api/getFamilies', (req, res) => {
 // Set static folder
 //console.log(__dirname);
 //app.use(express.static(path.join(__dirname, '/images')));
-app.use(express.static(path.join(__dirname, 'images')));
+app.use('/images',express.static(path.join(__dirname, '/images')));
 
 
 const PORT = process.env.PORT || 5000;
