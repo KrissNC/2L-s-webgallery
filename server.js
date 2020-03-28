@@ -13,15 +13,19 @@ var allPaintings = new Array();
 
 families.map( (line) => {
   var tmp = line.split(":");
-  var dir=tmp[0];
+  let dir=tmp[0];
 
-  var label = voca.replaceAll(tmp[1],/"/,'');
+  let label = voca.replaceAll(tmp[1],/"/,'');
 
   var folder = './images/'+ dir +'/';
   allFamilies.push(new Object({'family': dir , 'label': label }));
 
-  var list = fs.readdirSync(folder);
-  return(list.map( (filename) => {
+  let list = fs.readdirSync(folder);
+  let list2 = list.filter(function (e) { return (e != 'Thumbs.db') });
+
+  // example  let bigCities = cities.filter(function (e) { return e.population > 3000000; });
+  return(list2.map( (filename) => {
+
       allPaintings.push(new Object({'dir': "images/"+dir , 'label': label, 'image': filename }));
     }
 ));

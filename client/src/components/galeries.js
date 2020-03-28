@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './galeries.css'
 
-import FamilyGallery from './family'
+import FamilyGallery from './familyGallery'
 
 
 class Galeries extends Component {
