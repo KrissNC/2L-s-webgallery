@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path');
 const voca = require('voca');
+const dotenv = require('dotenv');
 
 const app = express();
+dotenv.config({ path: './config.env' });
 
 var fs = require('fs');
 var families = fs.readFileSync('./families.dat').toString().split("\r\n");
@@ -59,7 +61,13 @@ app.get('/api/getFamilies', (req, res) => {
 //app.use(express.static(path.join(__dirname, '/images')));
 app.use('/images',express.static(path.join(__dirname, '/images')));
 
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 
+  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+}
+
+console.log("Le serveur tourne en mode ", process.env.NODE_ENV);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

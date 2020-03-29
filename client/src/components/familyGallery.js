@@ -9,7 +9,7 @@ class FamilyGallery extends Component {
 
         this.state = {
 
-            familyName:'',
+            familyLabel:'',
             paintings:[],
             photos : []
         }
@@ -18,7 +18,7 @@ class FamilyGallery extends Component {
 
     componentDidMount() {
       
-    this.setState({familyName: this.props.family});
+    this.setState({familyLabel: this.props.label});
     //http://localhost:5000/api/getPaintingsByFamily/abstrait
     fetch('/api/getPaintingsByFamily/' + this.props.family)
     .then(res => res.json())
@@ -29,8 +29,8 @@ class FamilyGallery extends Component {
     render() {
 
         let photos = [];
-        const pictServer = 'http://localhost:5000/';
-
+        //const pictServer = 'http://localhost:5000/';
+        const pictServer = './';
         this.state.paintings.forEach(painting => {
             photos.push({
                 src: pictServer +  painting.dir + '/' + painting.image,
@@ -43,7 +43,7 @@ class FamilyGallery extends Component {
 
         return (
             <React.Fragment>
-                <h2>{this.state.familyName}</h2>
+                <h2>{this.state.familyLabel}</h2>
                 <Gallery photos={photos} />
             </React.Fragment>
         )
