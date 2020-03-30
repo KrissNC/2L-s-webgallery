@@ -7,7 +7,8 @@ const app = express();
 dotenv.config({ path: './config.env' });
 
 var fs = require('fs');
-var families = fs.readFileSync('./families.dat').toString().split("\r\n");
+
+var families = fs.readFileSync('./families.dat').toString().replace("\r","").split("\n");
 
 var allFamilies = new Array();
 
